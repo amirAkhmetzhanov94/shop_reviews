@@ -1,3 +1,4 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.db.models import Avg
 from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
@@ -68,7 +69,7 @@ class ProductDeleteView(DeleteView):
     success_url = reverse_lazy("index")
 
 
-class ReviewCreateView(CreateView):
+class ReviewCreateView(LoginRequiredMixin, CreateView):
     model = Review
     template_name = "products/detail.html"
     form_class = ReviewForm
@@ -85,10 +86,13 @@ class ReviewCreateView(CreateView):
         return reverse("product_detail", kwargs={"pk": self.get_product().pk})
 
 
-class EditReviewView(UpdateView):
+class EditReviewView(UserPassesTestMixin, UpdateView):
     template_name = "reviews/update.html"
     form_class = ReviewForm
     model = Review
+
+    def test_func(self):
+        return self.request.user == self.get_object() or self.request.user.groups.filter(name='Moderator').exists()
 
     def get_success_url(self):
         return reverse("product_detail", kwargs={"pk": self.get_object().product.pk})
@@ -98,6 +102,8 @@ class DeleteReviewView(DeleteView):
     template_name = "reviews/delete.html"
     model = Review
 
+    def test_func(self):
+        return self.request.user == self.get_object() or self.request.user.groups.filter(name='Moderator').exists()
+
     def get_success_url(self):
         return reverse("product_detail", kwargs={"pk": self.get_object().product.pk})
-

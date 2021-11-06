@@ -71,8 +71,7 @@ class UserChangeView(UserPassesTestMixin, UpdateView):
     context_object_name = "user_obj"
 
     def test_func(self):
-        return self.request.user == self.get_object() or \
-               self.request.user.is_superuser or self.request.user.groups.filter(name="admins")
+        return self.request.user == self.get_object()
 
     def get_success_url(self):
         return reverse("user_detail", kwargs={"pk": self.object.pk})
@@ -90,5 +89,4 @@ class ChangePasswordView(UserPassesTestMixin, UpdateView):
         return redirect("user_detail", pk=self.get_object().pk)
 
     def test_func(self):
-        return self.request.user == self.get_object() or \
-               self.request.user.is_superuser or self.request.user.groups.filter(name="admins")
+        return self.request.user == self.get_object()
