@@ -70,3 +70,11 @@ class EditReviewView(UpdateView):
 
     def get_success_url(self):
         return reverse("product_detail", kwargs={"pk": self.get_object().product.pk})
+
+
+class DeleteReviewView(DeleteView):
+    template_name = "reviews/delete.html"
+    model = Review
+
+    def get_success_url(self):
+        return reverse("product_detail", kwargs={"pk": self.get_object().product.pk})

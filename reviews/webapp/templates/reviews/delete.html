@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Delete review{% endblock %}
+
+{% block content %}
+        <div class="container">
+            <h1 class="text-center">Are you sure want to delete {{ review.author.username }}'s review?</h1>
+            <form method="POST" action="{% url "review_delete" review.pk %}" class="text-center">
+            {% csrf_token %}
+                <div class="row">
+                    <div class="col text-center">
+                            <p><input class="btn btn-primary btn-lg btn-block mt-3" type="submit" value="Yes"></p>
+                            <p><input class="btn btn-secondary btn-lg btn-block" type="button" value="No" onclick='location
+                            .href="{% url "product_detail" review.product.pk %}"'></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+{% endblock %}

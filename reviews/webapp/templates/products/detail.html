@@ -22,6 +22,7 @@
             <p>{{ review.text }}</p>
             <p><b>Rating:</b> {{ review.rating }} out of 5</p>
             <a href="{% url "review_edit" review.pk %}">Edit</a>
+            <a href="{% url "review_delete" review.pk %}">Delete</a>
         </div>
             <hr>
         {% empty %}
