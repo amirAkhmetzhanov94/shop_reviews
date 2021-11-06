@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ user_obj.username }}'s profile{% endblock %}
+{% block content %}
+    <h1>{{ user_obj.username }}'s profile</h1><a href="{% url 'user_change' user_obj.pk %}">Edit profile</a>
+    <a href="{% url 'user_change_password' user_obj.pk %}">Change password</a>
+    <div class="user_details mt-5">
+        <p><b>Username:</b> {{ user_obj.username }}</p>
+        {% if user_obj.first_name %}
+        <p><b>Name:</b> {{ user_obj.first_name }}</p>
+        {% endif %}
+        {% if user_obj.last_name %}
+        <p><b>Last name:</b> {{ user_obj.last_name }}
+        {% endif %}
+        <p><b>Email:</b> {{ user_obj.email }}</p>
+    </div>
+    <div class="users_reviews">
+        <h2 class="text-center">Comments: </h2>
+        {% for review in object_list %}
+        <div class="review text-left mt-5">
+            <p><b>{{ review.author }} ({{ review.author.email }})</b></p>
+            <p>{{ review.text }}</p>
+            <p><b>Rating:</b> {{ review.rating }} out of 5</p>
+            <a href="{% url "review_edit" review.pk %}">Edit</a>
+            <a href="{% url "review_delete" review.pk %}">Delete</a>
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

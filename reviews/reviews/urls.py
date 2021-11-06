@@ -18,6 +18,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from webapp import views as web_views
+from accounts import views as acc_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +29,11 @@ urlpatterns = [
     path('products/<int:pk>/delete', web_views.ProductDeleteView.as_view(), name="product_delete"),
     path('products/<int:pk>/reviews/create', web_views.ReviewCreateView.as_view(), name="review_create"),
     path('reviews/<int:pk>/edit', web_views.EditReviewView.as_view(), name="review_edit"),
-    path('reviews/<int:pk>/delete', web_views.DeleteReviewView.as_view(), name="review_delete")
+    path('reviews/<int:pk>/delete', web_views.DeleteReviewView.as_view(), name="review_delete"),
+    path('accounts/login/', acc_views.LoginView.as_view(), name="login"),
+    path('accounts/logout/', acc_views.LogoutView.as_view(), name="logout"),
+    path('accounts/register/', acc_views.RegisterView.as_view(), name="register"),
+    path('accounts/<int:pk>/profile', acc_views.UserDetailView.as_view(), name="user_detail"),
+    path('accounts/<int:pk>/profile/edit', acc_views.UserChangeView.as_view(), name="user_change"),
+    path('accounts/<int:pk>/profile/change_password', acc_views.ChangePasswordView.as_view(), name="user_change_password")
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

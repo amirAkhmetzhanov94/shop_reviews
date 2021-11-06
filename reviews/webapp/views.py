@@ -1,5 +1,5 @@
-from django.db.models import Count, Avg
-from django.shortcuts import render, get_object_or_404
+from django.db.models import Avg
+from django.shortcuts import get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
@@ -22,7 +22,11 @@ class IndexView(ListView):
 
     def find_avg(self, product):
         avg_rating = product.reviews.values("rating").aggregate(Avg("rating")).get("rating__avg")
-        return round(avg_rating, 2)
+        if avg_rating is None:
+            avg_rating = 0
+        else:
+            avg_rating = round(avg_rating, 2)
+        return avg_rating
 
 
 class ProductDetailView(DetailView):
@@ -34,7 +38,11 @@ class ProductDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         context["reviews"] = Review.objects.filter(product_id__exact=self.object.pk)
         context["review_form"] = ReviewForm()
-        context["avg_rating"] = round(self.object.reviews.values("rating").aggregate(Avg("rating")).get("rating__avg"),2)
+        avg_rating = self.object.reviews.values("rating").aggregate(Avg("rating")).get("rating__avg")
+        if avg_rating is None:
+            context["avg_rating"] = 0
+        else:
+            context["avg_rating"] = round(avg_rating, 2)
         return context
 
 
@@ -92,3 +100,4 @@ class DeleteReviewView(DeleteView):
 
     def get_success_url(self):
         return reverse("product_detail", kwargs={"pk": self.get_object().product.pk})
+

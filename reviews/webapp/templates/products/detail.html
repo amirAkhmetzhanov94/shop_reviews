@@ -21,7 +21,7 @@
         <h2>Reviews:</h2>
         {% for review in reviews %}
         <div class="review text-left mt-3">
-            <p><b>{{ review.author }} ({{ review.author.email }})</b></p>
+            <p><b><a href="{% url "user_detail" review.author.pk %}">{{ review.author }}</a> ({{ review.author.email }})</b></p>
             <p>{{ review.text }}</p>
             <p><b>Rating:</b> {{ review.rating }} out of 5</p>
             <a href="{% url "review_edit" review.pk %}">Edit</a>
