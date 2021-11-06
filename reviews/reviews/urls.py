@@ -26,5 +26,6 @@ urlpatterns = [
     path('products/create', web_views.ProductCreateView.as_view(), name="product_create"),
     path('products/<int:pk>/edit', web_views.ProductEditView.as_view(), name="product_edit"),
     path('products/<int:pk>/delete', web_views.ProductDeleteView.as_view(), name="product_delete"),
-    path('products/<int:pk>/reviews/create', web_views.ReviewCreateView.as_view(), name="review_create")
+    path('products/<int:pk>/reviews/create', web_views.ReviewCreateView.as_view(), name="review_create"),
+    path('reviews/<int:pk>/edit', web_views.EditReviewView.as_view(), name="review_edit")
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

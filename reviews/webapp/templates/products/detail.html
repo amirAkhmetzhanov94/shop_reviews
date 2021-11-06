@@ -21,6 +21,7 @@
             <p><b>{{ review.author }} ({{ review.author.email }})</b></p>
             <p>{{ review.text }}</p>
             <p><b>Rating:</b> {{ review.rating }} out of 5</p>
+            <a href="{% url "review_edit" review.pk %}">Edit</a>
         </div>
             <hr>
         {% empty %}

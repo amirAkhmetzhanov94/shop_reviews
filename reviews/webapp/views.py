@@ -62,3 +62,11 @@ class ReviewCreateView(CreateView):
     def get_success_url(self):
         return reverse("product_detail", kwargs={"pk": self.get_product().pk})
 
+
+class EditReviewView(UpdateView):
+    template_name = "reviews/update.html"
+    form_class = ReviewForm
+    model = Review
+
+    def get_success_url(self):
+        return reverse("product_detail", kwargs={"pk": self.get_object().product.pk})
