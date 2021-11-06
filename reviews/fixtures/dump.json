@@ -3,7 +3,7 @@
   "model": "webapp.product",
   "pk": 1,
   "fields": {
-    "name": "iPhone 11",
+    "name": "iPhone 11 updated",
     "category": "Smartphones",
     "description": "iPhone 11 is splash, water, and dust resistant and was tested under controlled laboratory conditions with a rating of IP68 under IEC standard 60529 (maximum depth of 2 meters up to 30 minutes). Splash, water, and dust resistance are not permanent conditions. Resistance might decrease as a result of normal wear.",
     "picture": "pictures/download_2.jpeg"
@@ -27,6 +27,16 @@
     "category": "Appliances",
     "description": "LG has a style and size for every kitchen setting. Side-by-side refrigerators: One of our most popular styles, these fridges feature LG's latest cooling and freshness technology, convenient storage throughout and styling that enhances every kitchen. Plus, you can see your entire food inventory at a glance.",
     "picture": "pictures/download_4.jpeg"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 4,
+  "fields": {
+    "name": "LG V30",
+    "category": "Smartphones",
+    "description": "The LG V30 is an Android phablet manufactured by LG Electronics as part of the LG V series.Unveiled on 31 August 2017 as the successor to the LG V20, the V30 forgoes the V20's secondary display for a \"floating bar\" which has nearly the same functions as the second display.It still features quad DACs for improved audio.",
+    "picture": "pictures/download_5.jpeg"
   }
 },
 {
@@ -57,6 +67,36 @@
     "product": 3,
     "text": "Not so great",
     "rating": "2"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 4,
+  "fields": {
+    "author": 1,
+    "product": 1,
+    "text": "sdfsdfsdfsdfsd",
+    "rating": "2"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 5,
+  "fields": {
+    "author": 1,
+    "product": 1,
+    "text": "fsdsdfsdfsdfsdfsdfsdf",
+    "rating": "3"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 9,
+  "fields": {
+    "author": 1,
+    "product": 2,
+    "text": "asdasdw234234",
+    "rating": "1"
   }
 }
 ]
