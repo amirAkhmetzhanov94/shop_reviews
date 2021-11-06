@@ -1,0 +1,62 @@
+[
+{
+  "model": "webapp.product",
+  "pk": 1,
+  "fields": {
+    "name": "iPhone 11",
+    "category": "Smartphones",
+    "description": "iPhone 11 is splash, water, and dust resistant and was tested under controlled laboratory conditions with a rating of IP68 under IEC standard 60529 (maximum depth of 2 meters up to 30 minutes). Splash, water, and dust resistance are not permanent conditions. Resistance might decrease as a result of normal wear.",
+    "picture": "pictures/download_2.jpeg"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 2,
+  "fields": {
+    "name": "Lenovo Y740",
+    "category": "Laptops",
+    "description": "The Lenovo Legion design has evolved even further to match the two sides of today's gamers—stylish for work, savage for play. Housing epic specs in a precision-cut, all-aluminum chassis, the 17.3\" Legion Y740 sports a clean look, weighs only 2.9kg / 6.39 lbs, measures only 22mm, and features Corsair ® iCUE ambient system lighting.",
+    "picture": "pictures/download_3.jpeg"
+  }
+},
+{
+  "model": "webapp.product",
+  "pk": 3,
+  "fields": {
+    "name": "LG fridge L554050",
+    "category": "Appliances",
+    "description": "LG has a style and size for every kitchen setting. Side-by-side refrigerators: One of our most popular styles, these fridges feature LG's latest cooling and freshness technology, convenient storage throughout and styling that enhances every kitchen. Plus, you can see your entire food inventory at a glance.",
+    "picture": "pictures/download_4.jpeg"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 1,
+  "fields": {
+    "author": 1,
+    "product": 1,
+    "text": "Super smartphone 5 out of 5",
+    "rating": "5"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 2,
+  "fields": {
+    "author": 1,
+    "product": 2,
+    "text": "Worthy laptop!",
+    "rating": "4"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 3,
+  "fields": {
+    "author": 1,
+    "product": 3,
+    "text": "Not so great",
+    "rating": "2"
+  }
+}
+]
