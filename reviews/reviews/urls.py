@@ -22,5 +22,6 @@ from webapp import views as web_views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', web_views.IndexView.as_view(), name="index"),
-    path('products/<int:pk>/detail', web_views.ProductDetailView.as_view(), name="product_detail")
+    path('products/<int:pk>/detail', web_views.ProductDetailView.as_view(), name="product_detail"),
+    path('products/create', web_views.ProductCreateView.as_view(), name="product_create")
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
