@@ -18,11 +18,11 @@
         <h5 class="card-title">{{ product.name }}</h5>
         <p class="card-text">{{ product.description|slice:200 }} <a href="{% url "product_detail" product.pk %}">Learn more..</a></p>
         <p>Average rating:</p>{{ ratings_list.pop }}
-        {% if perms.change_product and perms.delete_product %}
+        {% if perms.webapp.change_product and perms.webapp.delete_product %}
           <div class="mt-3">
             <a href="{% url "product_edit" product.pk %}">Edit</a>
             <a href="{% url "product_delete" product.pk %}">Delete</a>
-        </div>
+          </div>
        {% endif %}
       </div>
     </div>
