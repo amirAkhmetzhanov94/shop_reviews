@@ -5,14 +5,17 @@
 
 {% block content %}
     <h1>{{ product.name }}'s details</h1>
-    <div class="product_details text-center mt-5">
+    <div class="product text-center mt-5">
         <img width="300" src="{% if not product.picture %}
                 {% static "pictures/img_empty.png" %}
             {% else %}
                 {{ product.picture.url }}
             {% endif %}" class="card-img-top" alt="...">
-        <div class="product_category mt-5 text-left"><p><b>Category: </b>{{ product.category }}</p></div>
-        <div class="product_description text-left"><p><b>Description: </b>{{ product.description }}</p></div>
+        <div class="product_details mt-5 text-left">
+            <p><b>Category: </b>{{ product.category }}</p>
+            <p><b>Description: </b>{{ product.description }}</p>
+            <p><b>Average rating: </b> {{ avg_rating }}</p>
+        </div>
     </div>
     <div class="reviews_block text-center">
         <h2>Reviews:</h2>

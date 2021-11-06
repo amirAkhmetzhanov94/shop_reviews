@@ -17,6 +17,7 @@
       <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
         <p class="card-text">{{ product.description|slice:200 }} <a href="{% url "product_detail" product.pk %}">Learn more..</a></p>
+          <p>Average rating:</p>{{ ratings_list|slice:forloop.counter }}
       </div>
     </div>
   </div>
