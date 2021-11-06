@@ -24,14 +24,17 @@
             <p><b><a href="{% url "user_detail" review.author.pk %}">{{ review.author }}</a> ({{ review.author.email }})</b></p>
             <p>{{ review.text }}</p>
             <p><b>Rating:</b> {{ review.rating }} out of 5</p>
-            <a href="{% url "review_edit" review.pk %}">Edit</a>
-            <a href="{% url "review_delete" review.pk %}">Delete</a>
+            {% if user.username == review.author.username or perms.webapp.change_review and perms.webapp.delete_review %}
+                <a href="{% url "review_edit" review.pk %}">Edit</a>
+                <a href="{% url "review_delete" review.pk %}">Delete</a>
+            {% endif %}
         </div>
             <hr>
         {% empty %}
             <p>No reviews yet</p>
             <hr>
         {% endfor %}
+        {% if user.is_authenticated %}
         <div class="create_new_comment text-left">
             <form action="{% url "review_create" product.pk %}" method="post">
                 {% csrf_token %}
@@ -39,5 +42,6 @@
                 <button class="btn btn-primary">Create new comment</button>
             </form>
         </div>
+        {% endif %}
     </div>
 {% endblock %}

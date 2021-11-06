@@ -98,7 +98,7 @@ class EditReviewView(UserPassesTestMixin, UpdateView):
         return reverse("product_detail", kwargs={"pk": self.get_object().product.pk})
 
 
-class DeleteReviewView(DeleteView):
+class DeleteReviewView(UserPassesTestMixin, DeleteView):
     template_name = "reviews/delete.html"
     model = Review
 

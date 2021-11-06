@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% block title %}{{ user_obj.username }}'s profile{% endblock %}
 {% block content %}
-    <h1>{{ user_obj.username }}'s profile</h1><a href="{% url 'user_change' user_obj.pk %}">Edit profile</a>
+    <h1>{{ user_obj.username }}'s profile</h1>
+    {% ifequal user user_obj %}
+    <a href="{% url 'user_change' user_obj.pk %}">Edit profile</a>
     <a href="{% url 'user_change_password' user_obj.pk %}">Change password</a>
+    {% endifequal %}
     <div class="user_details mt-5">
         <p><b>Username:</b> {{ user_obj.username }}</p>
         {% if user_obj.first_name %}
@@ -20,8 +23,10 @@
             <p><b>{{ review.author }} ({{ review.author.email }})</b></p>
             <p>{{ review.text }}</p>
             <p><b>Rating:</b> {{ review.rating }} out of 5</p>
+            {% if user.username == review.author.username or perms.webapp.change_review and perms.webapp.delete_review %}
             <a href="{% url "review_edit" review.pk %}">Edit</a>
             <a href="{% url "review_delete" review.pk %}">Delete</a>
+            {% endif %}
         </div>
         {% endfor %}
     </div>
