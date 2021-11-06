@@ -24,5 +24,6 @@ urlpatterns = [
     path('', web_views.IndexView.as_view(), name="index"),
     path('products/<int:pk>/detail', web_views.ProductDetailView.as_view(), name="product_detail"),
     path('products/create', web_views.ProductCreateView.as_view(), name="product_create"),
-    path('products/<int:pk>/edit', web_views.ProductEditView.as_view(), name="product_edit")
+    path('products/<int:pk>/edit', web_views.ProductEditView.as_view(), name="product_edit"),
+    path('products/<int:pk>/delete', web_views.ProductDeleteView.as_view(), name="product_delete")
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
