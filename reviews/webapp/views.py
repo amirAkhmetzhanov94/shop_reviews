@@ -1,9 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse, reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 
-from webapp.forms import ProductForm
-from webapp.models import Product
+from webapp.forms import ProductForm, ReviewForm
+from webapp.models import Product, Review
 
 
 class IndexView(ListView):
@@ -16,6 +16,12 @@ class ProductDetailView(DetailView):
     model = Product
     template_name = "products/detail.html"
     context_object_name = "product"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["reviews"] = Review.objects.filter(product_id__exact=self.object.pk)
+        context["review_form"] = ReviewForm()
+        return context
 
 
 class ProductCreateView(CreateView):
@@ -38,3 +44,21 @@ class ProductDeleteView(DeleteView):
     model = Product
     template_name = "products/delete.html"
     success_url = reverse_lazy("index")
+
+
+class ReviewCreateView(CreateView):
+    model = Review
+    template_name = "products/detail.html"
+    form_class = ReviewForm
+
+    def get_product(self):
+        return get_object_or_404(Product, pk=self.kwargs.get("pk"))
+
+    def form_valid(self, form):
+        form.instance.product = self.get_product()
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse("product_detail", kwargs={"pk": self.get_product().pk})
+

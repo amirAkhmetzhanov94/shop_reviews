@@ -1,7 +1,7 @@
 from django.forms import widgets
 from django import forms
 
-from webapp.models import Product
+from webapp.models import Product, Review
 
 
 class ProductForm(forms.ModelForm):
@@ -13,3 +13,11 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         exclude = []
+
+
+class ReviewForm(forms.ModelForm):
+    text = forms.CharField(widget=widgets.Textarea)
+
+    class Meta:
+        model = Review
+        exclude = ["author", "product"]

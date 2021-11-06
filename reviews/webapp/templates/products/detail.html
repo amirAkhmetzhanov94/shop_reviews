@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load crispy_forms_filters %}
 {% block title %}{{ product.name }}'s details{% endblock %}
 
 {% block content %}
@@ -12,5 +13,26 @@
             {% endif %}" class="card-img-top" alt="...">
         <div class="product_category mt-5 text-left"><p><b>Category: </b>{{ product.category }}</p></div>
         <div class="product_description text-left"><p><b>Description: </b>{{ product.description }}</p></div>
+    </div>
+    <div class="reviews_block text-center">
+        <h2>Reviews:</h2>
+        {% for review in reviews %}
+        <div class="review text-left mt-3">
+            <p><b>{{ review.author }} ({{ review.author.email }})</b></p>
+            <p>{{ review.text }}</p>
+            <p><b>Rating:</b> {{ review.rating }} out of 5</p>
+        </div>
+            <hr>
+        {% empty %}
+            <p>No reviews yet</p>
+            <hr>
+        {% endfor %}
+        <div class="create_new_comment text-left">
+            <form action="{% url "review_create" product.pk %}" method="post">
+                {% csrf_token %}
+                {{ review_form|crispy }}
+                <button class="btn btn-primary">Create new comment</button>
+            </form>
+        </div>
     </div>
 {% endblock %}
