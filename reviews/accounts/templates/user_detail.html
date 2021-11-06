@@ -28,6 +28,8 @@
             <a href="{% url "review_delete" review.pk %}">Delete</a>
             {% endif %}
         </div>
+        {% empty %}
+            <p>No comments yet</p>
         {% endfor %}
     </div>
 {% endblock %}

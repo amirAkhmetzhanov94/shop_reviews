@@ -41,16 +41,6 @@
 },
 {
   "model": "webapp.review",
-  "pk": 1,
-  "fields": {
-    "author": 1,
-    "product": 1,
-    "text": "Super smartphone 5 out of 5",
-    "rating": "5"
-  }
-},
-{
-  "model": "webapp.review",
   "pk": 2,
   "fields": {
     "author": 1,
@@ -97,6 +87,16 @@
     "product": 2,
     "text": "asdasdw234234",
     "rating": "1"
+  }
+},
+{
+  "model": "webapp.review",
+  "pk": 14,
+  "fields": {
+    "author": 1,
+    "product": 1,
+    "text": "sdfsdfsdfsd",
+    "rating": "2"
   }
 }
 ]
