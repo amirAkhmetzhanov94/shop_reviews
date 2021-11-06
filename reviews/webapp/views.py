@@ -18,7 +18,7 @@ class IndexView(ListView):
         ratings_list = []
         for product in self.object_list:
             ratings_list.append(self.find_avg(product))
-        context["ratings_list"] = ratings_list
+        context["ratings_list"] = ratings_list[::-1]
         return context
 
     def find_avg(self, product):
