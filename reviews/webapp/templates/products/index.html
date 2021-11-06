@@ -8,10 +8,10 @@
 {% for product in products %}
   <div class="col mb-4 mt-5">
     <div class="card">
-      <img width="250" src="{{ product.picture.url }}" class="card-img-top" alt="...">
+      <a href="{% url "product_detail" product.pk %}"><img width="250" src="{{ product.picture.url }}" class="card-img-top" alt="..."></a>
       <div class="card-body">
         <h5 class="card-title">{{ product.name }}</h5>
-        <p class="card-text">{{ product.description|slice:200 }}</p>
+        <p class="card-text">{{ product.description|slice:200 }} <a href="{% url "product_detail" product.pk %}">Learn more..</a></p>
       </div>
     </div>
   </div>
