@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from django.urls import reverse
-from django.views.generic import ListView, DetailView, CreateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import ListView, DetailView, CreateView, UpdateView
 
 from webapp.forms import ProductForm
 from webapp.models import Product
@@ -25,3 +25,10 @@ class ProductCreateView(CreateView):
 
     def get_success_url(self):
         return reverse("index")
+
+
+class ProductEditView(UpdateView):
+    model = Product
+    template_name = "products/edit.html"
+    form_class = ProductForm
+    success_url = reverse_lazy("index")

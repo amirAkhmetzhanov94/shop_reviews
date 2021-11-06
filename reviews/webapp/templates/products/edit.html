@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load crispy_forms_filters %}
+
+{% block title %}Edit {{ product.name }}{% endblock %}
+
+{% block content %}
+    <form action="{% url "product_edit" product.pk %}" method="post"
+    enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form|crispy }}
+        <button class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
